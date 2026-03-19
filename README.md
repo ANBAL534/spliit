@@ -115,9 +115,10 @@ To enable the feature:
 NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_RECEIPT_VISION_MODEL=gpt-5-nano
 ```
 
-To use a proxy or compatible API endpoint (e.g. a local gateway or OpenAI-compatible service), set `OPENAI_BASE_URL` to your custom endpoint.
+To use a proxy or compatible API endpoint (e.g. a local gateway or OpenAI-compatible service), set `OPENAI_BASE_URL` to your custom endpoint. `OPENAI_RECEIPT_VISION_MODEL` must be a vision-capable model.
 
 ### Deduce category from title
 
@@ -127,6 +128,7 @@ You can offer users to automatically deduce the expense category from the title.
 NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_CATEGORY_TEXT_MODEL=gpt-3.5-turbo
 ```
 
 ## License

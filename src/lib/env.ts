@@ -37,6 +37,8 @@ const envSchema = z
     ),
     OPENAI_API_KEY: z.string().optional(),
     OPENAI_BASE_URL: z.string().url().default('https://api.openai.com/v1'),
+    OPENAI_RECEIPT_VISION_MODEL: z.string().min(1).default('gpt-5-nano'),
+    OPENAI_CATEGORY_TEXT_MODEL: z.string().min(1).default('gpt-3.5-turbo'),
     MAX_UPLOAD_IMAGE_SIZE: z.coerce
       .number()
       .int()
