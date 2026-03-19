@@ -67,7 +67,7 @@ function Content({ children }: { children: React.ReactNode }) {
   const t = useTranslations()
   return (
     <TRPCProvider>
-      <header className="fixed top-0 left-0 right-0 h-16 flex justify-between bg-white dark:bg-gray-950 bg-opacity-50 dark:bg-opacity-50 p-2 border-b backdrop-blur-sm z-50">
+      <header className="fixed top-0 left-0 right-0 h-[75px] flex justify-between bg-white dark:bg-gray-950 bg-opacity-50 dark:bg-opacity-50 p-2 border-b backdrop-blur-sm z-50">
         <Link
           className="flex items-center gap-2 hover:scale-105 transition-transform"
           href="/"
@@ -75,9 +75,9 @@ function Content({ children }: { children: React.ReactNode }) {
           <h1>
             <Image
               src="/logo-with-text.png"
-              className="m-1 h-auto w-auto"
-              width={(35 * 522) / 180}
-              height={35}
+              className="m-1 w-[96px] h-[56px] sm:w-[128px] sm:h-[75px] object-contain"
+              width={128}
+              height={75}
               alt="Spliit"
             />
           </h1>
@@ -104,7 +104,7 @@ function Content({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <div className="pt-16 flex-1 flex flex-col">{children}</div>
+      <div className="pt-[75px] flex-1 flex flex-col">{children}</div>
 
       <footer className="sm:p-8 md:p-16 sm:mt-16 sm:text-sm md:text-base md:mt-32 bg-slate-50 dark:bg-card border-t p-6 mt-8 flex flex-col sm:flex-row sm:justify-between gap-4 text-xs [&_a]:underline">
         <div className="flex flex-col space-y-2">
@@ -112,9 +112,9 @@ function Content({ children }: { children: React.ReactNode }) {
             <Link className="flex items-center gap-2" href="/">
               <Image
                 src="/logo-with-text.png"
-                className="m-1 h-auto w-auto"
-                width={(35 * 522) / 180}
-                height={35}
+                className="m-1 w-[96px] h-[56px] sm:w-[128px] sm:h-[75px] object-contain"
+                width={128}
+                height={75}
                 alt="Spliit"
               />
             </Link>
