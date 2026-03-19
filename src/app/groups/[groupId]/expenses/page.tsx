@@ -1,5 +1,5 @@
 import GroupExpensesPageClient from '@/app/groups/[groupId]/expenses/page.client'
-import { env } from '@/lib/env'
+import { getRuntimeFeatureFlags } from '@/lib/featureFlags'
 import { Metadata } from 'next'
 
 export const revalidate = 3600
@@ -9,9 +9,12 @@ export const metadata: Metadata = {
 }
 
 export default async function GroupExpensesPage() {
+  const { enableReceiptExtract, maxUploadImageSize } =
+    await getRuntimeFeatureFlags()
   return (
     <GroupExpensesPageClient
-      enableReceiptExtract={env.NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT}
+      enableReceiptExtract={enableReceiptExtract}
+      maxUploadImageSize={maxUploadImageSize}
     />
   )
 }

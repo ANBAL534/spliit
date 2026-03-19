@@ -25,7 +25,6 @@ import {
 } from '@/components/ui/drawer'
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
-import { env } from '@/lib/env'
 import { useMediaQuery } from '@/lib/hooks'
 import {
   formatCurrency,
@@ -42,9 +41,11 @@ import { useRouter } from 'next/navigation'
 import { PropsWithChildren, ReactNode, useState } from 'react'
 import { useCurrentGroup } from '../current-group-context'
 
-const MAX_FILE_SIZE = env.MAX_UPLOAD_IMAGE_SIZE
+type Props = {
+  maxFileSize: number
+}
 
-export function CreateFromReceiptButton() {
+export function CreateFromReceiptButton({ maxFileSize }: Props) {
   const t = useTranslations('CreateFromReceipt')
   const isDesktop = useMediaQuery('(min-width: 640px)')
 
@@ -73,12 +74,12 @@ export function CreateFromReceiptButton() {
       }
       description={<>{t('Dialog.description')}</>}
     >
-      <ReceiptDialogContent />
+      <ReceiptDialogContent maxFileSize={maxFileSize} />
     </DialogOrDrawer>
   )
 }
 
-function ReceiptDialogContent() {
+function ReceiptDialogContent({ maxFileSize }: { maxFileSize: number }) {
   const { group } = useCurrentGroup()
   const { data: categoriesData } = trpc.categories.list.useQuery()
   const categories = categoriesData?.categories
@@ -95,11 +96,11 @@ function ReceiptDialogContent() {
   >(null)
 
   const handleFileChange = async (file: File) => {
-    if (file.size > MAX_FILE_SIZE) {
+    if (file.size > maxFileSize) {
       toast({
         title: t('TooBigToast.title'),
         description: t('TooBigToast.description', {
-          maxSize: formatFileSize(MAX_FILE_SIZE, locale),
+          maxSize: formatFileSize(maxFileSize, locale),
           size: formatFileSize(file.size, locale),
         }),
         variant: 'destructive',

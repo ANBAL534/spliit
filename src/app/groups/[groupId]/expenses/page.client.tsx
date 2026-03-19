@@ -26,8 +26,10 @@ export const metadata: Metadata = {
 
 export default function GroupExpensesPageClient({
   enableReceiptExtract,
+  maxUploadImageSize,
 }: {
   enableReceiptExtract: boolean
+  maxUploadImageSize: number
 }) {
   const t = useTranslations('Expenses')
   const { groupId } = useCurrentGroup()
@@ -42,7 +44,9 @@ export default function GroupExpensesPageClient({
           </CardHeader>
           <CardHeader className="p-4 sm:p-6 flex flex-row space-y-0 gap-2">
             <ExportButton groupId={groupId} />
-            {enableReceiptExtract && <CreateFromReceiptButton />}
+            {enableReceiptExtract && (
+              <CreateFromReceiptButton maxFileSize={maxUploadImageSize} />
+            )}
             <Button asChild size="icon">
               <Link
                 href={`/groups/${groupId}/expenses/create`}

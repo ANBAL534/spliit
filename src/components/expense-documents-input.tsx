@@ -18,7 +18,6 @@ import {
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
 import { randomId } from '@/lib/api'
-import { env } from '@/lib/env'
 import { ExpenseFormValues } from '@/lib/schemas'
 import { formatFileSize } from '@/lib/utils'
 import { Loader2, Plus, Trash, X } from 'lucide-react'
@@ -30,11 +29,14 @@ import { useEffect, useState } from 'react'
 type Props = {
   documents: ExpenseFormValues['documents']
   updateDocuments: (documents: ExpenseFormValues['documents']) => void
+  maxFileSize: number
 }
 
-const MAX_FILE_SIZE = env.MAX_UPLOAD_IMAGE_SIZE
-
-export function ExpenseDocumentsInput({ documents, updateDocuments }: Props) {
+export function ExpenseDocumentsInput({
+  documents,
+  updateDocuments,
+  maxFileSize,
+}: Props) {
   const locale = useLocale()
   const t = useTranslations('ExpenseDocumentsInput')
   const [pending, setPending] = useState(false)
@@ -42,11 +44,11 @@ export function ExpenseDocumentsInput({ documents, updateDocuments }: Props) {
   const { toast } = useToast()
 
   const handleFileChange = async (file: File) => {
-    if (file.size > MAX_FILE_SIZE) {
+    if (file.size > maxFileSize) {
       toast({
         title: t('TooBigToast.title'),
         description: t('TooBigToast.description', {
-          maxSize: formatFileSize(MAX_FILE_SIZE, locale),
+          maxSize: formatFileSize(maxFileSize, locale),
           size: formatFileSize(file.size, locale),
         }),
         variant: 'destructive',

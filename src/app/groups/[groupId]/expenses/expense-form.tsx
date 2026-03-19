@@ -1257,6 +1257,7 @@ export function ExpenseForm({
                   <ExpenseDocumentsInput
                     documents={field.value}
                     updateDocuments={field.onChange}
+                    maxFileSize={runtimeFeatureFlags.maxUploadImageSize}
                   />
                 )}
               />
