@@ -5,7 +5,10 @@ import { formatCategoryForAIPrompt } from '@/lib/utils'
 import OpenAI from 'openai'
 import { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/index.mjs'
 
-const openai = new OpenAI({ apiKey: env.OPENAI_API_KEY })
+const openai = new OpenAI({
+  apiKey: env.OPENAI_API_KEY,
+  baseURL: env.OPENAI_BASE_URL,
+})
 
 /** Limit of characters to be evaluated. May help avoiding abuse when using AI. */
 const limit = 40 // ~10 tokens

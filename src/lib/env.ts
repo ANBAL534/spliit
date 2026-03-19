@@ -36,6 +36,12 @@ const envSchema = z
       z.boolean().default(false),
     ),
     OPENAI_API_KEY: z.string().optional(),
+    OPENAI_BASE_URL: z.string().url().default('https://api.openai.com/v1'),
+    MAX_UPLOAD_IMAGE_SIZE: z.coerce
+      .number()
+      .int()
+      .positive()
+      .default(5 * 1024 ** 2),
   })
   .superRefine((env, ctx) => {
     if (

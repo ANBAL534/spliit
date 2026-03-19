@@ -35,7 +35,7 @@ Spliit is a free and open source alternative to Splitwise. You can either use th
 
 ## Contribute
 
-The project is open to contributions. Feel free to open an issue or even a pull-request! 
+The project is open to contributions. Feel free to open an issue or even a pull-request!
 Join the discussion in [the Spliit Discord server](https://discord.gg/YSyVXbwvSY).
 
 If you want to contribute financially and help us keep the application free and without ads, you can also:
@@ -45,7 +45,7 @@ If you want to contribute financially and help us keep the application free and 
 
 ### Translation
 
-The project's translations are managed using [our Weblate project](https://hosted.weblate.org/projects/spliit/spliit/). 
+The project's translations are managed using [our Weblate project](https://hosted.weblate.org/projects/spliit/spliit/).
 You can easily add missing translations to the project or even add a new language!
 Here is the current state of translation:
 
@@ -90,7 +90,10 @@ S3_UPLOAD_KEY=AAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_SECRET=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_BUCKET=name-of-s3-bucket
 S3_UPLOAD_REGION=us-east-1
+MAX_UPLOAD_IMAGE_SIZE=5242880
 ```
+
+`MAX_UPLOAD_IMAGE_SIZE` sets the maximum uploaded image size in bytes (default: `5242880` = 5 MiB).
 
 You can also use other S3 providers by providing a custom endpoint:
 
@@ -111,7 +114,10 @@ To enable the feature:
 ```.env
 NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+OPENAI_BASE_URL=https://api.openai.com/v1
 ```
+
+To use a proxy or compatible API endpoint (e.g. a local gateway or OpenAI-compatible service), set `OPENAI_BASE_URL` to your custom endpoint.
 
 ### Deduce category from title
 
@@ -120,6 +126,7 @@ You can offer users to automatically deduce the expense category from the title.
 ```.env
 NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
 ## License

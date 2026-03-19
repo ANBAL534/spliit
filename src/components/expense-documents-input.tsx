@@ -18,6 +18,7 @@ import {
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
 import { randomId } from '@/lib/api'
+import { env } from '@/lib/env'
 import { ExpenseFormValues } from '@/lib/schemas'
 import { formatFileSize } from '@/lib/utils'
 import { Loader2, Plus, Trash, X } from 'lucide-react'
@@ -31,7 +32,7 @@ type Props = {
   updateDocuments: (documents: ExpenseFormValues['documents']) => void
 }
 
-const MAX_FILE_SIZE = 5 * 1024 ** 2
+const MAX_FILE_SIZE = env.MAX_UPLOAD_IMAGE_SIZE
 
 export function ExpenseDocumentsInput({ documents, updateDocuments }: Props) {
   const locale = useLocale()

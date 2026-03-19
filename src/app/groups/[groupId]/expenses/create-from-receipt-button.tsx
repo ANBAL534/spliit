@@ -25,6 +25,7 @@ import {
 } from '@/components/ui/drawer'
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
+import { env } from '@/lib/env'
 import { useMediaQuery } from '@/lib/hooks'
 import {
   formatCurrency,
@@ -41,7 +42,7 @@ import { useRouter } from 'next/navigation'
 import { PropsWithChildren, ReactNode, useState } from 'react'
 import { useCurrentGroup } from '../current-group-context'
 
-const MAX_FILE_SIZE = 5 * 1024 ** 2
+const MAX_FILE_SIZE = env.MAX_UPLOAD_IMAGE_SIZE
 
 export function CreateFromReceiptButton() {
   const t = useTranslations('CreateFromReceipt')
